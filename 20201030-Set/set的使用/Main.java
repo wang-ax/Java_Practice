@@ -43,6 +43,31 @@ public class Main {
         /*for (String animal : set) {
             System.out.println(animal);
         }*/
+        
+        //可以对数组进行去重
+        List<String > list = new ArrayList<>();
+        list.add("apple");
+        list.add("apple");
+        list.add("apple");
+        list.add("apple");
+        list.add("peach");
+        list.add("orange");
+        Set<String> set2 = new TreeSet<>(list);
+        System.out.println(set2);
+        
+        //自定义类
+        Set<People>  people= new TreeSet<>(new Comparator<People>() {
+            @Override
+            public int compare(People o1, People o2) {
+                return 0;
+            }
+        });
+        System.out.println(people.add(new People()));
+        System.out.println(people.add(new People()));
+        System.out.println(people);
     }
-
+    static class People{
+        int age;
+        String name;
+    }
 }
