@@ -23,7 +23,7 @@ public class Solution {
         Map<Node, Node> map = new TreeMap<>(new Comparator<Node>() {
             @Override
             public int compare(Node o1, Node o2) {
-                return o1.hashCode() - o2.hashCode();
+                return o1.hashCode() - o2.hashCode();//
             }
         });
 
@@ -62,3 +62,37 @@ public class Solution {
         return newFakeNode.next;
     }
 }
+
+//复制新节点，新节点插入到老节点的后面
+Node current = head;
+while(current != null) {
+    Node currentNext = current.next;//保存current.next
+    Node newNode = new Node(current.val);
+    
+    cureent.next = newNode;
+    newNode.next = currentNext;
+    
+    current = currentNext;
+}
+//处理random
+Node oldCurrent = head;
+while(oldCurrent != null) {
+    Node newCurrent = oldCurrent.next;
+        if(oldCurrent.random == null) {
+        newCurrent.random = null;
+        }else {
+        newCurrent.random =oldCurrent.random.next;
+        }
+    oldCurrent = oldCurrent.next.next;
+}
+//拆开
+oldCurrent = head;
+while(oldCurrent != null) {
+    Node newCurrent = nodeCurrent.next;
+    oldCurrent.next = newCurrent.next;
+    if(newCurrent.next != null) {
+    newCurrent.next = newCurrent.next.next;
+    }
+    oldCurrent = oldCurrent.next;
+}
+
