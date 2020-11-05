@@ -38,6 +38,7 @@ public class Main {
         for(char ch : chars1) {
             if (!看到输出的.contains(ch)) {
                 if(!错误按键.contains(ch)) {
+                    //说明ch是新发现的错误
                     System.out.print(ch);
                     错误按键.add(ch);
                 }
