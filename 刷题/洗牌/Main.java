@@ -16,29 +16,33 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         while (scanner.hasNext()){
             int T = scanner.nextInt();//共有几组数据
-            while (T!=0) {
+            while (T-- >0) {
                 int n = scanner.nextInt();
                 int k = scanner.nextInt();
                 int[] array = new int[2 * n];
-                for (int i =0;i<array.length;i++){
+                for (int i =0;i< 2 * n;i++){
                     array[i] = scanner.nextInt();
                 }
                 //实现洗牌的过程
                 for(int i =0;i<k;i++) {
+                    //洗牌的次数为K次
                     Shuffle(array, 2 * n);
                 }
+
                 //将得到的数组输出
-                for (int i = 0;i<array.length;i++){
-                        System.out.print(array[i] + " ");
+                if (array.length > 0){
+                    System.out.print(array[0]);
                 }
+                for (int i = 1;i<array.length;i++){
+                        System.out.print(" "+array[i]);
+                }
+                System.out.println();
             }
-            T--;
         }
     }
 
     private static void Shuffle(int[] array,int n) {
         //洗牌的过程
-        //使用栈，将取出来的元素放入栈中然后再出栈，放入数组中
         List<Integer> list  = new ArrayList<>();
         //int[] newArray = new int[array.length];
         int middleIndex = n/2;
