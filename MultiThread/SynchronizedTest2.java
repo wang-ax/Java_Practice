@@ -1,12 +1,6 @@
 package test3;
 
-/**
- * ClassName test3
- * Description TODO
- * Author 30712
- * Date 2020-12-20
- * Time 16:29
- */
+
 public class SynchronizedTest2 {
     /**
      * 一个教室有50个座位，同时有三个老师安排同学的座位
@@ -17,9 +11,6 @@ public class SynchronizedTest2 {
      */
      private  static int COUNT  =50;
      public static void main(String[] args) {
-         /**
-          *
-          */
 /*
         Thread[] threads = new Thread[3];
         for (int i = 0;i<3;i++){
@@ -28,9 +19,9 @@ public class SynchronizedTest2 {
                 public void run() {
                     for (int j =0;j < 100;j++){
                         synchronized (SynchronizedTest2.class){
-                            if (n > 0){
+                            if (COUNT > 0){
                                 System.out.println(Thread.currentThread().getName());
-                                n--;
+                                COUNT--;
                             }
                         }
                         try {
@@ -50,23 +41,29 @@ public class SynchronizedTest2 {
             thread.start();
         }
 */
-         Task t = new Task();
-         for (int i =0;i< 3;i++){
-             new Thread(t).start();
-         }
+
+             new Thread(new Task(10)).start();
+             new Thread(new Task(20)).start();
+             new Thread(new Task(20)).start();
+
     }
+
     public  static  class  Task implements  Runnable{
+         private  int num =0;
+
+        public Task(int num) {
+            this.num = num;
+        }
 
         @Override
         public void run() {
             for (int i =0;i< 100;i++){
-                synchronized (this){
-                    if (COUNT > 0){
-
-                        System.out.println(Thread.currentThread().getName()+":"+COUNT+"同学");
+                synchronized (Task.class){
+                    if (COUNT > 0 && num > 0){
                         COUNT--;
+                        num--;
+                        System.out.printf("%s:COUNT= %s,num = %s%n" , Thread.currentThread().getName(),COUNT,num);
                     }
-
                 }
                 try {
                     Thread.sleep(200);
