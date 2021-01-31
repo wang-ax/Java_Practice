@@ -23,7 +23,6 @@ public class Main {
             //输出出现奇数次的两个数
             //使用异或的方式
             FindNumsAppearOnce(arr,n,arr1,arr2);
-
             if (arr1[0] < arr2[0]){
                 System.out.println(arr1[0]);
                 System.out.println(arr2[0]);
@@ -41,8 +40,16 @@ public class Main {
         for (int  i =0;i< length;i++){
             result ^= arr[i];
         }
+        int index = FindFirst1(result);
+        for (int i=0;i< arr.length;i++){
+            if (isBit1(arr[i],index)){
+                arr1[0] ^= arr[i];
+            }else {
+                arr2[0] ^=arr[i];
+            }
+        }
         //result表示两个出现过奇数次的数字进行异或的结果
-        arr1[0] =0;
+        /*arr1[0] =0;
         arr2[0] =0;
         int index = result -(result & (result-1));
         for (int i =0;i<length;i++){
@@ -51,11 +58,13 @@ public class Main {
             }else {
                 arr2[0] ^=arr[i];
             }
-        }
+        }*/
+    }
+    private static boolean isBit1(int target, int index) {
+        return ((target >> index) & 1) == 1;
     }
 
-
-    /*private static int FindFirst1(int result) {
+    private static int FindFirst1(int result) {
 
         int index =0;
         while ((result & 1) == 0 && index< 8){
@@ -63,5 +72,5 @@ public class Main {
             ++index;
         }
         return index;
-    }*/
+    }
 }
