@@ -1,5 +1,7 @@
 package 字符串转换整数;
 
+import java.util.Scanner;
+
 /**
  * ClassName 字符串转整型
  * Description TODO
@@ -31,25 +33,32 @@ public class Solution {
             if (c >='0' && c <='9'){
                 int n = c -'0';//计算该字符代表的值是多少
                 if (res >= edge){
-                    if (flag == 1) {
-                        if (res > edge || n > 7) {
-                            return Integer.MAX_VALUE;
+                    if (flag == 1) {//正数
+                        if (res > edge || n > 7) {//超出了Integer的范围
+                            return Integer.MAX_VALUE;//MAX_VALUE:2147483647
                         }
-                    }else {
-                            if (res > edge || n > 8){
-                                return Integer.MIN_VALUE;
-                            }
+                    }else {//负数
+                        if (res > edge || n > 8){
+                                return Integer.MIN_VALUE;//MIN_VALUE:-2147483648
                         }
                     }
+                }
                 res  = res*10+n;
             }else {
                 break;
             }
         }
-        return  res*flag;
+        return  res*flag;//数值*符号位=最终的结果
     }
 
     public static void main(String[] args) {
-        System.out.println(Integer.MIN_VALUE);
+        Solution s = new Solution();
+        Scanner scanner = new Scanner(System.in);
+        String  string = scanner.nextLine();
+        System.out.println(s.myAtoi(string));
+
+
+       /* System.out.println(Integer.MAX_VALUE);//2147483647
+        System.out.println(Integer.MIN_VALUE);//-2147483648*/
     }
 }
