@@ -46,7 +46,7 @@ public class Solution {
         //如果第一次碰到数字已经存在就说明该数字是第一个重复的数字，直接将该数字赋值给duplication[0]
         //并且直接return结束循环，后面的就不会再执行了
         Set<Integer> set = new HashSet<>();
-        for (int i=0;i< length;i++){
+        for (int i=0;i< length;i++){+
             if (set.contains(numbers[i])){
                 duplication[0] = numbers[i];
                 return true;
