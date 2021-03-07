@@ -1,2 +1,2 @@
 # Java
-Java 练习代码
+Java Practice
