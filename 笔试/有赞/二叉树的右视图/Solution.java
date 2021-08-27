@@ -1,18 +1,17 @@
-package 二叉树的左视图;
+package 二叉树的右视图;
 
-
+/**
+ * ClassName 二叉树的右视图
+ * Description TODO
+ * Author 30712
+ * Date 2021-08-27
+ * Time 22:15
+ */
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 
-/**
- * ClassName 二叉树的左视图
- * Description TODO
- * Author 30712
- * Date 2021-08-21
- * Time 10:15
- */
 class TreeNode{
     int val = 0;
     TreeNode left = null;
@@ -23,16 +22,18 @@ class TreeNode{
     }
 }
 public class Solution {
-    public static int[] leftSideView (TreeNode root) {
+    public static int[] rightSideView (TreeNode root) {
+        //二叉树的右视图
+        List<Integer> list = new ArrayList<>();//用来保存结果
 
-        List<Integer> list = new ArrayList<>();
-        Queue<TreeNode> queue = new LinkedList<>();
-        queue.offer(root);
+        Queue<TreeNode> queue = new LinkedList<>();//借助queue先进先出的特点
+        queue.offer(root);//先将根结点加入到queue中
         while (!queue.isEmpty()){
-            int size =queue.size();
+            int size =queue.size();//得到queue中的节点数量，就是每一层的节点数量
             for (int i= 0;i<size;i++){
                 TreeNode node = queue.poll();
-                if (  i == 0){
+                //如果是每一层的最后一个元素就加入到结果集中
+                if (  i == size-1){
                     list.add(node.val);
                 }
                 if (node.left != null){
@@ -60,9 +61,10 @@ public class Solution {
         root.right = node2;
         node1.left = node3;
         node1.right = node4;
-        int[] ints = leftSideView(root);
+        int[] ints = rightSideView(root);
         for (int i : ints){
             System.out.println(i);
         }
     }
 }
+
